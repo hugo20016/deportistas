@@ -96,22 +96,24 @@
             let telefono = $('#telefono').val();
             let email = $('#email').val();
             let tema = $('#tema').val();
-            let contactos = "";
-
-
+            let contactos = [];
 
             $.each($('#horario > option'), function (i, item) {
+                let horario_inicio;
+                let horario_fin;
+                let selected;
+                let contacto;
                 if (i > 0) {
-                    let contacto = "{";
                     let split_item = $(this).val().split(" - ");
-                    let horario_inicio = '"horario_inicio": "' + split_item[0] + '"';
-                    let horario_fin = '"horario_fin":  "' + split_item[1] + '"';
-                    let selected = '"selected": ' + $(this).is(":selected");
-                    contacto += horario_inicio + ', ' + horario_fin + ', ' + selected + '},';
-                    if (i == $('#contactos > option').length - 1) {
-                        contacto = contacto.slice(0, -1);
+                    let horario_inicio = split_item[0];
+                    let horario_fin = split_item[1];
+                    let selected = $(this).is(":selected");
+                    contacto = {
+                        horario_inicio: horario_inicio,
+                        horario_fin: horario_fin,
+                        selected: selected
                     }
-                    contactos += contacto;
+                    contactos.push(contacto);
                 }
             });
 
@@ -139,7 +141,7 @@
         }
 
         function getData() {
-            $.getJSON("json1.json", function (data) {
+            $.getJSON("data/json1.json", function (data) {
                 console.log(data);
                 $('#nombre').val(data["cabecera"]["nombre"]["texto"]);
                 $('#apellido1').val(data["cabecera"]["apellido1"]);
