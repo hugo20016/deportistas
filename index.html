@@ -99,7 +99,6 @@
             let contactos = "";
 
 
-            let json = ""
 
             $.each($('#horario > option'), function (i, item) {
                 if (i > 0) {
@@ -114,8 +113,22 @@
                     }
                     contactos += contacto;
                 }
-            })
-            console.log(contactos);
+            });
+
+            let json = {
+                nombre: {
+                    texto: nombre,
+                    id: Date.now()
+                },
+                apellido1: apellido1,
+                apellido2: apellido2,
+                telefono: telefono,
+                email: email,
+                foto_perfil: "",
+                tema: tema,
+                contactos: contactos
+            }
+            console.log(json);
         }
 
         function cleanData() {
