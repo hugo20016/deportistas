@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE cabecera [
+    <!ELEMENT cabecera (nombre, Nombre, apellido1, contactos)>
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT apellido1 (#PCDATA)>
+    <!ELEMENT Nombre (#PCDATA)>
+    <!ELEMENT contactos (contacto+)>
+    <!ELEMENT contacto (horario_inicio, horario_fin)>
+    <!ELEMENT horario_inicio (#PCDATA)>
+    <!ELEMENT horario_fin (#PCDATA)>
+]>
+<cabecera>
+    <nombre>Nacho</nombre>
+    <Nombre>Ignacio Serrano Broncano</Nombre>
+    <apellido1>Serrano</apellido1>
+    <contactos>
+         <contacto>
+            <horario_inicio>19:20</horario_inicio>
+            <horario_fin>20:20</horario_fin>
+        </contacto>
+    </contactos>
+</cabecera>

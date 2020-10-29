@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>XML & JSON</title>
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h4>Ejemplo uso JSON</h4>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-2">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Nombre" id="nombre" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Segundo apellido" id="apellido2"
+                        aria-label="apellido2" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-calendar"></i></label>
+                    </div>
+                    <select class="custom-select" id="horario">
+                        <option selected disabled>Choose...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tema">Escribe el tema a tratar</label>
+                    <textarea class="form-control" id="tema" rows="3"></textarea>
+                </div>
+                </form>
+            </div>
+            <div class="col-md-6 col-md-offset-2">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Primer apellido" id="apellido1"
+                        aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-at"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Dirección email" id="email"
+                        aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Teléfono de contacto" id="telefono"
+                        aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="button btn-danger" onclick="cleanData()">Limpiar datos</button>
+                <button class="button btn-primary" onclick="getData()">Obtener datos</button>
+                <button class="button btn-success" onclick="saveData()">Guardar datos</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        function saveData() {
+            let nombre = $('#nombre').val();
+            let apellido1 = $('#apellido1').val();
+            let apellido2 = $('#apellido2').val();
+            let telefono = $('#telefono').val();
+            let email = $('#email').val();
+            let tema = $('#tema').val();
+            let contactos;
+
+            let json = ""
+        }
+
+        function cleanData() {
+            let defaultData = '<option selected disabled>Choose...</option>';
+            $('input[type="text"]').val('');
+            $('#horario').empty().append(defaultData);
+            $('#tema').empty();
+        }
+
+        function getData() {
+            $.getJSON("json1.json", function (data) {
+                console.log(data);
+                $('#nombre').val(data["cabecera"]["nombre"]["texto"]);
+                $('#apellido1').val(data["cabecera"]["apellido1"]);
+                $('#apellido2').val(data["cabecera"]["apellido2"]);
+                $('#telefono').val(data["cabecera"]["telefono"]);
+                $('#email').val(data["cabecera"]["email"]);
+                let options = '<option selected disabled>Choose...</option>';
+                $.each(data["cabecera"]["contactos"], function (i, elem) {
+                    options += '<option value="1">' + elem.horario_inicio + ' - ' + elem.horario_fin + '</option>';
+                });
+                $('#horario').empty().append(options);
+                $('#tema').empty().append(data.cabecera.tema);
+            });
+        }
+    </script>
+</body>
+
+</html>
