@@ -13,4 +13,5 @@
    <f1 pais="Alemania" fecha_de_nacimiento="03/07/1987" equipo="Ferrari">Sebastian Vettel</f1>
    <f1 equipo="McLaren">Fernando Alonso</f1>
    <tenis>Rafael Nadal</tenis>
+   <futbol>Pirri</futbol>
 </deportistas>

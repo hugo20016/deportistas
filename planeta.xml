@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE planeta [
-    <!ELEMENT planeta (nombre+, tipo, (orbita|satelite), composicion*, (enano | medio | grande | gigante))>
+    <!ELEMENT planeta (nombre+,tipo,(orbita|satelite),composicion*)>
+    <!ATTLIST tipo tamanio (enano|medio|grande|gigante) "enano">
     <!ELEMENT nombre (#PCDATA)>
     <!ELEMENT tipo (#PCDATA)>
     <!ELEMENT orbita (trayectoria)>
     <!ELEMENT trayectoria (#PCDATA)>
     <!ELEMENT satelite (#PCDATA)>
     <!ELEMENT composicion (#PCDATA)>
-    <!ELEMENT enano EMPTY>
-    <!ELEMENT medio EMPTY>
-    <!ELEMENT grande EMPTY>
-    <!ELEMENT gigante EMPTY>
 
 ]>
 
 <planeta>
     <nombre>Venus</nombre>
     <nombre>X45%78</nombre>
-    <tipo>rocoso</tipo>
+    <tipo tamanio = "medio">rocoso</tipo>
     <satelite>Moon</satelite>
-    <satelite>Moon Raker</satelite>
-    <medio></medio>
+
 </planeta>
 
